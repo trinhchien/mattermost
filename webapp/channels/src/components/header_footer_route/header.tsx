@@ -27,7 +27,7 @@ const Header = ({alternateLink, backButtonURL, onBackButtonClick}: HeaderProps) 
 
     let freeBanner = null;
     if (license.IsLicensed === 'false') {
-        freeBanner = <><Logo/><span className='freeBadge'>{'FREE EDITION'}</span></>;
+        freeBanner = <><Logo/><span className='freeBadge'>{''}</span></>;
     }
 
     let title: React.ReactNode = SiteName;
@@ -39,6 +39,7 @@ const Header = ({alternateLink, backButtonURL, onBackButtonClick}: HeaderProps) 
         }
     }
 
+    return null; // Temporarily disable header rendering
     return (
         <div className={classNames('hfroute-header', {'has-free-banner': freeBanner, 'has-custom-site-name': title})}>
             <div className='header-main'>

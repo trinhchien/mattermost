@@ -60,6 +60,8 @@ import LoginMfa from './login_mfa';
 
 import './login.scss';
 
+import chatLogo from 'images/Chat-logo.png';
+
 const MOBILE_SCREEN_WIDTH = 1200;
 
 type LoginProps = {
@@ -407,30 +409,31 @@ const Login = ({onCustomizeHeader}: LoginProps) => {
     }, [extraParam, sessionExpired, siteName, onDismissSessionExpired]);
 
     const getAlternateLink = useCallback(() => {
-        const linkLabel = formatMessage({
-            id: 'login.noAccount',
-            defaultMessage: 'Don\'t have an account?',
-        });
-        const handleClick = () => {
-            trackEvent('signup', 'click_login_no_account');
-        };
-        if (showSignup) {
-            return (
-                <AlternateLinkLayout
-                    className='login-body-alternate-link'
-                    alternateLinkPath={'/signup_user_complete'}
-                    alternateLinkLabel={linkLabel}
-                />
-            );
-        }
-        return (
-            <AlternateLinkLayout
-                className='login-body-alternate-link'
-                alternateLinkPath={'/access_problem'}
-                alternateLinkLabel={linkLabel}
-                onClick={handleClick}
-            />
-        );
+        // const linkLabel = formatMessage({
+        //     id: 'login.noAccount',
+        //     defaultMessage: 'Don\'t have an account?',
+        // });
+        // const handleClick = () => {
+        //     trackEvent('signup', 'click_login_no_account');
+        // };
+        // if (showSignup) {
+        //     return (
+        //         <AlternateLinkLayout
+        //             className='login-body-alternate-link'
+        //             alternateLinkPath={'/signup_user_complete'}
+        //             alternateLinkLabel={linkLabel}
+        //         />
+        //     );
+        // }
+        // return (
+        //     <AlternateLinkLayout
+        //         className='login-body-alternate-link'
+        //         alternateLinkPath={'/access_problem'}
+        //         alternateLinkLabel={linkLabel}
+        //         onClick={handleClick}
+        //     />
+        // );
+        return undefined; // Temporarily disable alternate link rendering
     }, [showSignup]);
 
     const onWindowResize = throttle(() => {
@@ -767,6 +770,18 @@ const Login = ({onCustomizeHeader}: LoginProps) => {
         setBrandImageError(true);
     };
 
+    
+    const getCardLogo = () => {
+            return (
+                <img
+                    className='login-body-custom-branding-image'
+                    alt='brand'
+                    src={chatLogo}
+                    onError={handleBrandImageError}
+                />
+            );
+    };
+
     const getCardTitle = () => {
         if (CustomDescriptionText) {
             return CustomDescriptionText;
@@ -865,7 +880,7 @@ const Login = ({onCustomizeHeader}: LoginProps) => {
 
         return (
             <>
-                <div
+                {/* <div
                     className={classNames(
                         'login-body-message',
                         {
@@ -888,13 +903,16 @@ const Login = ({onCustomizeHeader}: LoginProps) => {
                         </h1>
                     )}
                     {getMessageSubtitle()}
-                </div>
+                </div> */}
                 <div className='login-body-action'>
                     {!isMobileView && getAlternateLink()}
                     <div className={classNames('login-body-card', {'custom-branding': enableCustomBrand, 'with-error': hasError})}>
                         <div
                             className='login-body-card-content'
                         >
+                            <p className='login-body-card-title'>
+                                {getCardLogo()}
+                            </p>
                             <p className='login-body-card-title'>
                                 {getCardTitle()}
                             </p>
