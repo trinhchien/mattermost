@@ -253,7 +253,7 @@ export default class Sidebar extends React.PureComponent<Props, State> {
                         canCreateCustomGroups={this.props.canCreateCustomGroups}
                     />
                 )}
-                <div
+                {/* <div
                     id='lhsNavigator'
                     role='application'
                     aria-label={ariaLabel}
@@ -261,7 +261,7 @@ export default class Sidebar extends React.PureComponent<Props, State> {
                     data-a11y-sort-order='6'
                 >
                     <ChannelNavigator/>
-                </div>
+                </div> */}
                 <div className='sidebar--left__icons'>
                     <Pluggable pluggableName='LeftSidebarHeader'/>
                 </div>

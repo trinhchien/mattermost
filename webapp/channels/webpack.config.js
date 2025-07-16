@@ -198,6 +198,7 @@ var config = {
                 {from: 'src/components/initial_loading_screen/initial_loading_screen.css', to: 'css'},
                 {from: 'src/images/login.png', to: 'images'},
                 {from: 'src/images/Chat-logo.png', to: 'images'},
+                {from: 'src/images/sidebar-header.png', to: 'images'},
             ],
         }),
 

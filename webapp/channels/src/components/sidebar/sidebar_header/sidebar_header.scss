@@ -1,12 +1,65 @@
 .sidebarHeaderContainer {
     display: flex;
-    height: 55px;
-    flex-direction: row;
+    height: 90px;
+    flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
     color: var(--sidebar-header-text-color);
+    background-image: url("images/sidebar-header.png");
+    background-size: cover;
+
+    .sidebarHeaderTitleContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        button#browseOrAddChannelMenuButton {
+            color: #FFFFFF;
+            background-color: #EE0033;
+        }
+    }
+
+    .sidebarHeaderNavigationContainer {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+
+
+        .a11y__region {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            .SidebarChannelNavigator {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .SidebarChannelNavigator_jumpToButton {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        
+
+
+    }
 
     button#sidebarTeamMenuButton {
         overflow: hidden;
