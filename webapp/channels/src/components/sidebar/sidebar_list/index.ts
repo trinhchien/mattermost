@@ -18,7 +18,7 @@ import {
     stopDragging,
     clearChannelSelection,
 } from 'actions/views/channel_sidebar';
-import {close, switchToLhsStaticPage} from 'actions/views/lhs';
+import {close, switchToLhsStaticPage, setChannelFilterType} from 'actions/views/lhs';
 import {getCurrentStaticPageId, getVisibleStaticPages} from 'selectors/lhs';
 import {
     getDisplayedChannels,
@@ -69,6 +69,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
             stopDragging,
             clearChannelSelection,
             switchToLhsStaticPage,
+            setChannelFilterType
         }, dispatch),
     };
 }

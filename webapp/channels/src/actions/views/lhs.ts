@@ -79,6 +79,13 @@ export const selectLhsItem = (type: LhsItemType, id?: string): ThunkActionFunc<u
     };
 };
 
+export function setChannelFilterType(filterType: 'all' | 'group' | 'direct') {
+    return {
+        type: ActionTypes.SET_CHANNEL_FILTER_TYPE,
+        data: filterType,
+    };
+}
+
 export function switchToLhsStaticPage(id: string): ActionFunc<boolean> {
     return (dispatch, getState) => {
         const state = getState();

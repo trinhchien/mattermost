@@ -53,7 +53,7 @@ const SearchHint = (props: Props): JSX.Element => {
                             id='search_bar.usage.search_type_question'
                             defaultMessage='What are you searching for?'
                         />
-                        <FormattedMessage
+                        {/* <FormattedMessage
                             id='search_bar.usage.searchLearn'
                             defaultMessage='<a>Learn about search</a>'
                             values={{
@@ -68,7 +68,7 @@ const SearchHint = (props: Props): JSX.Element => {
                                     </ExternalLink>
                                 ),
                             }}
-                        />
+                        /> */}
 
                     </div>
                     <div className='button-container'>

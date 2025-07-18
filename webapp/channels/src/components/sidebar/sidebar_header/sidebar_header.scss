@@ -16,7 +16,10 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
-
+        
+        .sidebar-header-chat-logo {
+            height: 25px;
+        }
         button#browseOrAddChannelMenuButton {
             color: #FFFFFF;
             background-color: #EE0033;
@@ -27,10 +30,10 @@
         flex: 1;
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-content: center;
+        align-items: baseline;
+        justify-content: flex-start;
         width: 100%;
-        height: 100%;
+    
 
 
         .a11y__region {
@@ -57,7 +60,22 @@
             }
         }
         
+        #searchbar-help-popup.search-help-popover {
+            top: 25px;
+            left: 0;
+            right: auto;
+            width: 300px;
+            max-width: 350px;
+            padding: 10px;
+            background-color: rgba(var(--center-channel-bg-rgb), 0.95);
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 
+        }
+
+        .search__form {
+            border-radius: 40px;
+        }
 
     }
 

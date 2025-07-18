@@ -199,6 +199,7 @@ var config = {
                 {from: 'src/images/login.png', to: 'images'},
                 {from: 'src/images/Chat-logo.png', to: 'images'},
                 {from: 'src/images/sidebar-header.png', to: 'images'},
+                {from: 'src/images/chat-sidebar-header-logo.png', to: 'images'},
             ],
         }),
 

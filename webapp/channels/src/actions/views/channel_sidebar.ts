@@ -218,3 +218,8 @@ export function multiSelectChannelTo(channelId: string): ActionFunc<unknown> {
         });
     };
 }
+
+export const setChannelViewType = (viewType: 'all' | 'group' | 'direct') => ({
+    type: 'SET_CHANNEL_VIEW_TYPE',
+    payload: viewType,
+});

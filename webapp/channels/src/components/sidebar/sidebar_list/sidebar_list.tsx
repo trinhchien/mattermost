@@ -30,11 +30,19 @@ import {mod} from 'utils/utils';
 
 import type {DraggingState} from 'types/store';
 import type {StaticPage} from 'types/store/lhs';
+import { log } from 'console';
+import { all } from 'axios';
+import {CategorySorting} from '@mattermost/types/channel_categories';
+import { CategoryTypes } from 'mattermost-redux/constants/channel_categories';
+import SideBarListFilter from './sidebar_list_filter/sidebar_list_filter';
+import {ButtonType} from './sidebar_list_filter/sidebar_list_filter';
 
 const DraftsLink = makeAsyncComponent('DraftsLink', lazy(() => import('components/drafts/drafts_link/drafts_link')));
 const GlobalThreadsLink = makeAsyncComponent('GlobalThreadsLink', lazy(() => import('components/threading/global_threads_link')));
 const UnreadChannelIndicator = makeAsyncComponent('UnreadChannelIndicator', lazy(() => import('../unread_channel_indicator')));
 const UnreadChannels = makeAsyncComponent('UnreadChannels', lazy(() => import('../unread_channels')));
+
+
 
 export function renderView(props: React.HTMLProps<HTMLDivElement>) {
     return (
@@ -383,6 +391,7 @@ export class SidebarList extends React.PureComponent<Props, State> {
     };
 
     renderCategory = (category: ChannelCategory, index: number) => {
+        console.log('Rendering category:', category, 'at index:', index);
         return (
             <SidebarCategory
                 key={category.id}
@@ -500,7 +509,35 @@ export class SidebarList extends React.PureComponent<Props, State> {
                 );
             }
 
-            const renderedCategories = categories.map(this.renderCategory);
+            
+            
+            let listCategory = categories;
+            
+            if (categories?.length) {
+                // const listChannelIds = categories.flatMap(categories => categories.channel_ids);
+                const allCategory = {
+                    ...categories[0], // sao chép thuộc tính cũ
+                    id: 'all-channel-category',
+                    display_name: 'Tất cả',
+                    channel_ids: categories.flatMap(cat => cat.channel_ids),
+                    sorting: CategorySorting.Recency,
+                    type: CategoryTypes.CUSTOM,
+                };
+                // allCategory.channel_ids = listChannelIds;
+                // allCategory.collapsed = false;
+                // allCategory.display_name = "Tất cả";
+                // allCategory.id = 'all-channel-category';
+                // allCategory.sorting = CategorySorting.Recency;
+                // allCategory.type = 'custom';
+
+                listCategory = [allCategory];
+            }
+            console.log('Rendering categories:', listCategory);
+            const renderedCategories = listCategory.map(this.renderCategory);
+
+
+            // const renderedCategories = categories.map(this.renderCategory);
+            
 
             channelList = (
                 <>
@@ -553,6 +590,7 @@ export class SidebarList extends React.PureComponent<Props, State> {
 
             // NOTE: id attribute added to temporarily support the desktop app's at-mention DOM scraping of the old sidebar
             <>
+                <SideBarListFilter onClick={setChannelFilterType}/>
                 <GlobalThreadsLink/>
                 <DraftsLink/>
                 <div

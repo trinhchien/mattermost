@@ -33,6 +33,8 @@ import AddChannelsCtaButton from '../add_channels_cta_button';
 import InviteMembersButton from '../invite_members_button';
 import {SidebarCategoryHeader} from '../sidebar_category_header';
 import SidebarChannel from '../sidebar_channel';
+import system from 'reducers/views/system';
+import { Console } from 'console';
 
 type Props = {
     category: ChannelCategory;

@@ -22,6 +22,7 @@ type OwnProps = {
     category: ChannelCategory;
 }
 
+
 function makeMapStateToProps() {
     const getChannelIdsForCategory = makeGetFilteredChannelIdsForCategory();
 

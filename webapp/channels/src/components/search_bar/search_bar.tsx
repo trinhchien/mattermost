@@ -119,9 +119,7 @@ const SearchBar: React.FunctionComponent<Props> = (props: Props): JSX.Element =>
                 autoComplete='off'
                 aria-labelledby='searchBox'
             >
-                <div className='search__font-icon'>
-                    <i className='icon icon-magnify icon-16'/>
-                </div>
+
 
                 {props.searchType !== '' && (
                     <div
@@ -149,6 +147,8 @@ const SearchBar: React.FunctionComponent<Props> = (props: Props): JSX.Element =>
                         />
                     </div>
                 )}
+
+
                 <SuggestionBox
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
@@ -177,6 +177,10 @@ const SearchBar: React.FunctionComponent<Props> = (props: Props): JSX.Element =>
                 />
                 {props.isSearchingTerm && <LoadingSpinner/>}
                 {props.children}
+
+                <div className='search__font-icon'>
+                    <i className='icon icon-magnify icon-16'/>
+                </div>
             </form>
         </div>
     );
