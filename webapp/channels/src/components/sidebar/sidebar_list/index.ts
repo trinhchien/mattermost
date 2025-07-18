@@ -19,7 +19,7 @@ import {
     clearChannelSelection,
 } from 'actions/views/channel_sidebar';
 import {close, switchToLhsStaticPage, setChannelFilterType} from 'actions/views/lhs';
-import {getCurrentStaticPageId, getVisibleStaticPages} from 'selectors/lhs';
+import {getCurrentStaticPageId, getVisibleStaticPages, getCurrentChannelFilter} from 'selectors/lhs';
 import {
     getDisplayedChannels,
     getDraggingState,
@@ -55,6 +55,7 @@ function mapStateToProps(state: GlobalState) {
         hasUnreadThreads,
         currentStaticPageId: getCurrentStaticPageId(state),
         staticPages: getVisibleStaticPages(state),
+        currentChannelFilter: getCurrentChannelFilter(state),
     };
 }
 
@@ -69,7 +70,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
             stopDragging,
             clearChannelSelection,
             switchToLhsStaticPage,
-            setChannelFilterType
+            setChannelFilterType,
         }, dispatch),
     };
 }

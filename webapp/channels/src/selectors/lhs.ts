@@ -13,6 +13,9 @@ import type {SidebarSize} from 'components/resizable_sidebar/constants';
 import type {GlobalState} from 'types/store';
 import type {StaticPage} from 'types/store/lhs';
 
+import type {ChannelFilterType} from 'types/store/lhs';
+import { log } from 'console';
+
 export function getIsLhsOpen(state: GlobalState): boolean {
     return state.views.lhs.isOpen;
 }
@@ -23,6 +26,11 @@ export function getLhsSize(state: GlobalState): SidebarSize {
 
 export function getCurrentStaticPageId(state: GlobalState): string {
     return state.views.lhs.currentStaticPageId;
+}
+
+export function getCurrentChannelFilter(state: GlobalState): ChannelFilterType {
+    console.log("debug state view lhs:", state.views.lhs);
+    return state.views.lhs.currentChannelFilter;
 }
 
 export const getDraftsCount = makeGetDraftsCount();

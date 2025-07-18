@@ -35,7 +35,8 @@ import { all } from 'axios';
 import {CategorySorting} from '@mattermost/types/channel_categories';
 import { CategoryTypes } from 'mattermost-redux/constants/channel_categories';
 import SideBarListFilter from './sidebar_list_filter/sidebar_list_filter';
-import {ButtonType} from './sidebar_list_filter/sidebar_list_filter';
+import type {ChannelFilterType} from 'types/store/lhs';
+import { ConsoleIcon } from '@mattermost/compass-icons/components';
 
 const DraftsLink = makeAsyncComponent('DraftsLink', lazy(() => import('components/drafts/drafts_link/drafts_link')));
 const GlobalThreadsLink = makeAsyncComponent('GlobalThreadsLink', lazy(() => import('components/threading/global_threads_link')));
@@ -97,6 +98,7 @@ type Props = WrappedComponentProps & {
     hasUnreadThreads: boolean;
     currentStaticPageId: string;
     staticPages: StaticPage[];
+    currentChannelFilter: ChannelFilterType;
 
     handleOpenMoreDirectChannelsModal: (e: Event) => void;
     onDragStart: (initial: DragStart) => void;
@@ -111,6 +113,7 @@ type Props = WrappedComponentProps & {
         setDraggingState: (data: DraggingState) => void;
         stopDragging: () => void;
         clearChannelSelection: () => void;
+        setChannelFilterType: (filterType: ChannelFilterType) => void;
     };
 };
 
@@ -131,6 +134,7 @@ const categoryHeaderHeight = 32;
 const scrollMarginWithUnread = 55;
 
 export class SidebarList extends React.PureComponent<Props, State> {
+
     channelRefs: Map<string, HTMLLIElement>;
     scrollbar: React.RefObject<Scrollbars>;
     animate: SpringSystem;
@@ -489,6 +493,10 @@ export class SidebarList extends React.PureComponent<Props, State> {
         }, 300);
     };
 
+    onClickFilterBtn = (filterType: ChannelFilterType) => {
+        this.props.actions.setChannelFilterType(filterType); 
+    }
+
     render() {
         const {categories} = this.props;
 
@@ -514,12 +522,19 @@ export class SidebarList extends React.PureComponent<Props, State> {
             let listCategory = categories;
             
             if (categories?.length) {
+                
                 // const listChannelIds = categories.flatMap(categories => categories.channel_ids);
                 const allCategory = {
                     ...categories[0], // sao chép thuộc tính cũ
-                    id: 'all-channel-category',
+                    id: `${this.props.currentChannelFilter}-channel-category`,
                     display_name: 'Tất cả',
-                    channel_ids: categories.flatMap(cat => cat.channel_ids),
+                    channel_ids: categories.flatMap(cat => {
+                        if(this.props.currentChannelFilter == 'all') {
+                            return cat.channel_ids;
+                        }else{
+                          return this.props.currentChannelFilter==cat.type? cat.channel_ids : [];
+                        }
+                    }),
                     sorting: CategorySorting.Recency,
                     type: CategoryTypes.CUSTOM,
                 };
@@ -590,7 +605,7 @@ export class SidebarList extends React.PureComponent<Props, State> {
 
             // NOTE: id attribute added to temporarily support the desktop app's at-mention DOM scraping of the old sidebar
             <>
-                <SideBarListFilter onClick={setChannelFilterType}/>
+                <SideBarListFilter handleClick={this.onClickFilterBtn} selectedBtn={this.props.currentChannelFilter}/>
                 <GlobalThreadsLink/>
                 <DraftsLink/>
                 <div

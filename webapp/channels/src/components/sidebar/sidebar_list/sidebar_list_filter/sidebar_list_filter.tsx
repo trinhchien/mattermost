@@ -1,44 +1,46 @@
-import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {setChannelViewType} from 'actions/views/channel_sidebar';
+import { setChannelFilterType } from 'actions/views/lhs';
+import React from 'react'
+import {ChannelFilterType} from 'types/store/lhs';
 
+const ChannelFilterButtons = ({handleClick, selectedBtn}: {handleClick: (filterType: ChannelFilterType) => void, selectedBtn: ChannelFilterType}) => {
 
-export type ButtonType = 'all' | 'group' | 'direct';
-
-interface GroupButtonProps {
-    selected: ButtonType;
-    onSelect: (type: ButtonType) => void;
-}
-
-const buttons: { type: ButtonType; label: string }[] = [
-    { type: 'all', label: 'All' },
-    { type: 'group', label: 'Group' },
-    { type: 'direct', label: 'Direct' },
-];
-
-const SideBarListFilter: React.FC<GroupButtonProps> = ({ selected, onSelect }) => {
     return (
-        <div >
+        <div style={{display: 'flex', gap: '8px'}}>
             <button
-                className={selected === 'all' ? 'selected' : ''}
-                onClick={() => onSelect('all')}
+                className={selectedBtn === ChannelFilterType.ALL ? 'selected' : ''}
+                onClick={() => handleClick(ChannelFilterType.ALL)}
             >
                 Tất cả
             </button>
             <button
-                className={selected === 'group' ? 'selected' : ''}
-                onClick={() => onSelect('group')}
+                className={selectedBtn === ChannelFilterType.GROUP ? 'selected' : ''}
+                onClick={() => handleClick(ChannelFilterType.GROUP)}
             >
                 Nhóm
             </button>
             <button
-                className={selected === 'direct' ? 'selected' : ''}
-                onClick={() => onSelect('direct')}
+                className={selectedBtn === ChannelFilterType.DIRECT ? 'selected' : ''}
+                onClick={() => handleClick(ChannelFilterType.DIRECT)}
             >
                 Tin nhắn trực tiếp
             </button>
+
+            <style>{`
+                button {
+                    padding: 8px 12px;
+                    border: 1px solid #ccc;
+                    background: white;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+                button.selected {
+                    background: #007bff;
+                    color: white;
+                    border-color: #007bff;
+                }
+            `}</style>
         </div>
     );
 };
 
-export default SideBarListFilter;
+export default ChannelFilterButtons;

@@ -53,7 +53,7 @@ function currentStaticPageId(state = '', action: MMAction) {
     }
 }
 
-function channelFilter(state = 'all', action: MMAction) {
+function currentChannelFilter(state = 'all', action: MMAction) {
     switch (action.type) {
         case ActionTypes.SET_CHANNEL_FILTER_TYPE:
             return action.data; // 'all' | 'group' | 'direct'
@@ -66,5 +66,5 @@ export default combineReducers({
     isOpen,
     size,
     currentStaticPageId,
-    channelFilter
+    currentChannelFilter
 });

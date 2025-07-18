@@ -17,10 +17,6 @@ export type DraggingState = {
     id?: string;
 }
 
-export type ChannelFilterState = {
-    filterType: 'all' | 'group' | 'direct';
-};
-
 export type GlobalState = BaseGlobalState & {
     plugins: PluginsState;
     storage: StorageState;

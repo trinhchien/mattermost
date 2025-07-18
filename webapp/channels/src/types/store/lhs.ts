@@ -3,6 +3,12 @@
 
 import type {SidebarSize} from 'components/resizable_sidebar/constants';
 
+export enum ChannelFilterType {
+    ALL = 'all',
+    GROUP = 'channels',
+    DIRECT = 'direct_messages',
+};
+
 export type LhsViewState = {
     isOpen: boolean;
 
@@ -10,6 +16,7 @@ export type LhsViewState = {
 
     // Static pages (e.g. Threads, Insights, etc.)
     currentStaticPageId: string;
+    currentChannelFilter: ChannelFilterType
 }
 
 export enum LhsItemType {

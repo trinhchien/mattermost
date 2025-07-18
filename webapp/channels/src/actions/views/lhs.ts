@@ -10,6 +10,7 @@ import {getHistory} from 'utils/browser_history';
 import Constants, {ActionTypes} from 'utils/constants';
 
 import type {ActionFunc, ThunkActionFunc} from 'types/store';
+import {ChannelFilterType} from 'types/store/lhs';
 import {LhsItemType} from 'types/store/lhs';
 
 export const setLhsSize = (sidebarSize?: SidebarSize) => {
@@ -79,7 +80,7 @@ export const selectLhsItem = (type: LhsItemType, id?: string): ThunkActionFunc<u
     };
 };
 
-export function setChannelFilterType(filterType: 'all' | 'group' | 'direct') {
+export function setChannelFilterType(filterType: ChannelFilterType) {
     return {
         type: ActionTypes.SET_CHANNEL_FILTER_TYPE,
         data: filterType,
