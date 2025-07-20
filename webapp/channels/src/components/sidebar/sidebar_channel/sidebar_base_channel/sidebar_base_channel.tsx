@@ -17,6 +17,8 @@ import SidebarBaseChannelIcon from './sidebar_base_channel_icon';
 
 import type {PropsFromRedux} from './index';
 
+import chatGroupIcon from 'images/chat-group-icon.png';
+
 export interface Props extends PropsFromRedux {
     channel: Channel;
     currentTeamName: string;
@@ -53,6 +55,15 @@ const SidebarBaseChannel = ({
             channelType={channel.type}
         />
     );
+
+    // const channelIcon = (
+    //     <img
+    //         className= 'SidebarBaseChannelIcon'
+    //         alt={intl.formatMessage({id: 'accessibility.sidebar.types.chatGroup', defaultMessage: 'chat group'})}
+    //         src={chatGroupIcon}
+    //         loading='lazy'
+    //     />
+    // );
 
     let ariaLabelPrefix;
     if (channel.type === Constants.OPEN_CHANNEL) {

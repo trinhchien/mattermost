@@ -132,8 +132,8 @@ const ProductMenu = (): JSX.Element => {
                             size={20}
                             color='rgba(var(--sidebar-text-rgb), 0.56)'
                         />
-                        {license.IsLicensed === 'false' && <ProductBrandingTeamEdition/>}
-                        {license.IsLicensed === 'true' && <ProductBranding/>}
+                        {/* {license.IsLicensed === 'false' && <ProductBrandingTeamEdition/>}
+                        {license.IsLicensed === 'true' && <ProductBranding/>} */}
                     </ProductMenuButton>
                 </ProductMenuContainer>
                 <Menu

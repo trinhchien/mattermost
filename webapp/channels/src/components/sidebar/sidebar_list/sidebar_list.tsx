@@ -133,6 +133,7 @@ const categoryHeaderHeight = 32;
 // that the channel is not under the unread indicator.
 const scrollMarginWithUnread = 55;
 
+let channelCount = 0;
 export class SidebarList extends React.PureComponent<Props, State> {
 
     channelRefs: Map<string, HTMLLIElement>;
@@ -547,9 +548,9 @@ export class SidebarList extends React.PureComponent<Props, State> {
 
                 listCategory = [allCategory];
             }
-            console.log('Rendering categories:', listCategory);
-            const renderedCategories = listCategory.map(this.renderCategory);
 
+            const renderedCategories = listCategory.map(this.renderCategory);
+            channelCount = listCategory.length>0 ? listCategory[0].channel_ids.length:0;
 
             // const renderedCategories = categories.map(this.renderCategory);
             
@@ -605,7 +606,7 @@ export class SidebarList extends React.PureComponent<Props, State> {
 
             // NOTE: id attribute added to temporarily support the desktop app's at-mention DOM scraping of the old sidebar
             <>
-                <SideBarListFilter handleClick={this.onClickFilterBtn} selectedBtn={this.props.currentChannelFilter}/>
+                <SideBarListFilter handleClick={this.onClickFilterBtn} selectedBtn={this.props.currentChannelFilter} channelCount={channelCount}/>
                 <GlobalThreadsLink/>
                 <DraftsLink/>
                 <div

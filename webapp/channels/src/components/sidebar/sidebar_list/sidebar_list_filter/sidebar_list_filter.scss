@@ -1,0 +1,52 @@
+.filter-btn-container {
+  display: flex;
+  gap: 8px;
+  background-color: #f3f4f6; /* xám nhạt */
+  border-radius: 9999px; /* full rounded */
+}
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background-color: #e5e7eb;
+  color: #374151;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, border 0.2s;
+  justify-content: space-between;
+
+  &:hover {
+    background-color: #d1d5db;
+  }
+
+  &.selected {
+    background-color: white;
+    border: 1px solid #3b82f6;
+    // color: #2563eb;
+  }
+}
+
+.filter-btn-count {
+  padding: 2px 6px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: #d1d5db;
+  color: #111827;
+
+  &.selected {
+    background-color: #1d4ed8;
+    color: #ffffff;
+  }
+}
+
+.filter-btn-label {
+  font-weight: bold;
+  font-size: 12px;
+  font-family: "Open Sans";
+}

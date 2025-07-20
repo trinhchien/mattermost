@@ -363,7 +363,7 @@ export default class SidebarCategory extends React.PureComponent<Props, State> {
                                                 draggingOver: droppableSnapshot.isDraggingOver,
                                             })}
                                         >
-                                            <SidebarCategoryHeader
+                                            {/* <SidebarCategoryHeader
                                                 ref={this.categoryTitleRef}
                                                 displayName={displayName}
                                                 dragHandleProps={provided.dragHandleProps}
@@ -377,7 +377,7 @@ export default class SidebarCategory extends React.PureComponent<Props, State> {
                                                 {newLabel}
                                                 {directMessagesModalButton}
                                                 {categoryMenu}
-                                            </SidebarCategoryHeader>
+                                            </SidebarCategoryHeader> */}
                                             <div
                                                 className={classNames('SidebarChannelGroup_content')}
                                             >

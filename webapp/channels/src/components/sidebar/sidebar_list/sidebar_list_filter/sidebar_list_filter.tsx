@@ -1,44 +1,45 @@
 import { setChannelFilterType } from 'actions/views/lhs';
 import React from 'react'
 import {ChannelFilterType} from 'types/store/lhs';
+import './sidebar_list_filter.scss';
 
-const ChannelFilterButtons = ({handleClick, selectedBtn}: {handleClick: (filterType: ChannelFilterType) => void, selectedBtn: ChannelFilterType}) => {
+const ChannelFilterButtons = ({handleClick, selectedBtn, channelCount}: {handleClick: (filterType: ChannelFilterType) => void, selectedBtn: ChannelFilterType, channelCount: number}) => {
 
     return (
-        <div style={{display: 'flex', gap: '8px'}}>
+        <div className = 'filter-btn-container'>
             <button
-                className={selectedBtn === ChannelFilterType.ALL ? 'selected' : ''}
+                className={`filter-btn ${selectedBtn === ChannelFilterType.ALL ? 'selected' : ''}`} 
                 onClick={() => handleClick(ChannelFilterType.ALL)}
             >
-                Tất cả
+                <span className="filter-btn-label">Tất cả</span>
+                {selectedBtn === ChannelFilterType.ALL && (
+                    <span className={`filter-btn-count ${selectedBtn === ChannelFilterType.ALL ? 'selected' : ''}`}>
+                        {channelCount}
+                    </span>
+                )}
             </button>
             <button
-                className={selectedBtn === ChannelFilterType.GROUP ? 'selected' : ''}
+                className={`filter-btn ${selectedBtn === ChannelFilterType.GROUP ? 'selected' : ''}`} 
                 onClick={() => handleClick(ChannelFilterType.GROUP)}
             >
-                Nhóm
+                <span className="filter-btn-label">Nhóm</span>
+                {selectedBtn === ChannelFilterType.GROUP && (
+                    <span className={`filter-btn-count ${selectedBtn === ChannelFilterType.GROUP ? 'selected' : ''}`}>
+                        {channelCount}
+                    </span>
+                )}
             </button>
             <button
-                className={selectedBtn === ChannelFilterType.DIRECT ? 'selected' : ''}
+                className={`filter-btn ${selectedBtn === ChannelFilterType.DIRECT ? 'selected' : ''}`} 
                 onClick={() => handleClick(ChannelFilterType.DIRECT)}
             >
-                Tin nhắn trực tiếp
+                <span className="filter-btn-label">Cá nhân</span>
+                {selectedBtn === ChannelFilterType.DIRECT && (
+                    <span className={`filter-btn-count ${selectedBtn === ChannelFilterType.DIRECT ? 'selected' : ''}`}>
+                        {channelCount}
+                    </span>
+                )}
             </button>
-
-            <style>{`
-                button {
-                    padding: 8px 12px;
-                    border: 1px solid #ccc;
-                    background: white;
-                    border-radius: 4px;
-                    cursor: pointer;
-                }
-                button.selected {
-                    background: #007bff;
-                    color: white;
-                    border-color: #007bff;
-                }
-            `}</style>
         </div>
     );
 };

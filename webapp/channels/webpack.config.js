@@ -200,6 +200,7 @@ var config = {
                 {from: 'src/images/Chat-logo.png', to: 'images'},
                 {from: 'src/images/sidebar-header.png', to: 'images'},
                 {from: 'src/images/chat-sidebar-header-logo.png', to: 'images'},
+                {from: 'src/images/chat-group-icon.png', to: 'images'},
             ],
         }),
 
