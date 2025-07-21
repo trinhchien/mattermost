@@ -3,6 +3,8 @@
   gap: 8px;
   background-color: #f3f4f6; /* xám nhạt */
   border-radius: 9999px; /* full rounded */
+  padding: 8px 16px;
+  overflow: scroll;
 }
 
 .filter-btn {
@@ -49,4 +51,5 @@
   font-weight: bold;
   font-size: 12px;
   font-family: "Open Sans";
+  white-space: nowrap;
 }

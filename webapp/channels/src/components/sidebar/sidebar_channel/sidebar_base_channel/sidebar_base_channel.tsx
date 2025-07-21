@@ -17,7 +17,6 @@ import SidebarBaseChannelIcon from './sidebar_base_channel_icon';
 
 import type {PropsFromRedux} from './index';
 
-import chatGroupIcon from 'images/chat-group-icon.png';
 
 export interface Props extends PropsFromRedux {
     channel: Channel;
@@ -72,7 +71,7 @@ const SidebarBaseChannel = ({
         ariaLabelPrefix = intl.formatMessage({id: 'accessibility.sidebar.types.private', defaultMessage: 'private channel'});
     }
 
-    return (
+    return (<>
         <SidebarChannelLink
             channel={channel}
             link={`/${currentTeamName}/channels/${channel.name}`}
@@ -82,6 +81,7 @@ const SidebarBaseChannel = ({
             icon={channelIcon}
             isSharedChannel={channel.shared}
         />
+        </>
     );
 };
 

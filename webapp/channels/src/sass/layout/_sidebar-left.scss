@@ -964,7 +964,7 @@ $sidebarOpacityAnimationDuration: 0.15s;
     .SidebarChannel {
         display: flex;
         overflow: hidden;
-        height: 32px;
+        height: 64px;
 
         /* height required for transition animation */
         align-items: center;
@@ -1061,12 +1061,41 @@ $sidebarOpacityAnimationDuration: 0.15s;
         & span.SidebarChannelLinkLabel {
             overflow: hidden;
             max-width: 100%;
-            height: 18px;
+            height: 24px;
             line-height: 18px;
             text-align: justify;
             text-overflow: ellipsis;
             user-select: none;
             white-space: nowrap;
+            font-size: 16px;
+            &.unread {
+                color: var(--sidebar-unread-text);
+                font-weight: 600;
+            }
+        }
+
+        .SidebarChannel_lastMessage {
+            size: 18px;
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;;
+            // width: 110px;
+            &.unread {
+                color: var(--sidebar-unread-text);
+                font-weight: 600;
+            }
+        }
+
+        .SidebarChannelLink_lastPost {
+            overflow: visible;
+            height: 24px;
+            font-size: 12px;
+            width: 110px;
+            &.unread {
+                color: var(--sidebar-unread-text);
+                font-weight: 600;
+            }
         }
 
         &.expanded {
@@ -1104,14 +1133,15 @@ $sidebarOpacityAnimationDuration: 0.15s;
         position: relative;
         display: flex;
         width: 100%;
-        height: 32px;
+        height: 46px;
         align-items: center;
         padding: 7px 16px 7px 19px;
         border-top: 0;
         border-bottom: 0;
         margin-right: 0;
         color: rgba(var(--sidebar-text-rgb), 0.64);
-        font-size: 14px;
+        font-size: 16px;
+        font-weight: bold;
         text-decoration: none;
 
         .emoji {
@@ -1130,6 +1160,26 @@ $sidebarOpacityAnimationDuration: 0.15s;
 
         .SidebarMenu:not(.menuOpen) {
             display: none;
+        }
+
+
+        .SidebarBaseChannelIconContainer {
+            width: 48px;
+            height: 48px;
+            min-width: 20px;
+            min-height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+
+            .SidebarBaseChannelIcon {
+                width: 55%;
+                height: 55%;
+                font-size: 10px;
+            }
         }
     }
 
@@ -1219,25 +1269,28 @@ $sidebarOpacityAnimationDuration: 0.15s;
     .SidebarChannel .SidebarLink > i {
         display: flex;
         margin: 0 6px 0 -2px;
-        font-size: 18px;
+        font-size: 24px;
     }
 
     .SidebarChannelLinkLabel_wrapper,
     .SidebarChannelLinkLabel_wrapper > div {
+        flex-direction: column;
         display: flex;
         overflow: hidden;
         flex-grow: 1;
-        gap: 8px;
+        gap: 2px;
+        text-overflow: ellipsis;
+        white-space: nowrap;;
     }
 
     .DirectChannel__profile-picture {
-        height: 20px;
+        height: 48px;
         margin-right: 9px;
 
         .DirectChannel__status-icon {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 30px;
+            left: 30px;
             display: flex;
             width: 13px;
             height: 13px;
@@ -1256,6 +1309,7 @@ $sidebarOpacityAnimationDuration: 0.15s;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: auto;
         transition: transform 0.15s ease-out;
+        
 
         /* should match collapse animation speed */
     }

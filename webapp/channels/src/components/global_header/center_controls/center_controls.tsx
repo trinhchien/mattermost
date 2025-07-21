@@ -34,7 +34,7 @@ const CenterControls = ({productId = null}: Props): JSX.Element => {
         <CenterControlsContainer>
             {isChannels(productId) ? (
                 <>
-                    <GlobalSearchNav/>
+                    {/* <GlobalSearchNav/> */}
                     <UserGuideDropdown/>
                 </>
             ) : (

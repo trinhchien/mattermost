@@ -28,6 +28,9 @@ import ChannelPencilIcon from '../channel_pencil_icon';
 import SidebarChannelIcon from '../sidebar_channel_icon';
 import SidebarChannelMenu from '../sidebar_channel_menu';
 
+import chatGroupIcon from 'images/chat-group-icon.png';
+import { log } from 'console';
+
 type Props = WrappedComponentProps & {
     channel: Channel;
     link: string;
@@ -244,8 +247,33 @@ export class SidebarChannelLink extends React.PureComponent<Props, State> {
             />
         ) : null;
 
+        function getColorFromId(id: string): string {
+            // Hash đơn giản: tính tổng mã ký tự
+            let hash = 0;
+            for (let i = 0; i < id.length; i++) {
+                hash = id.charCodeAt(i) + ((hash << 5) - hash);
+                hash = hash & hash; // convert to 32bit integer
+            }
+
+    // Dùng HSL để tạo màu sắc tươi
+    const hue = Math.abs(hash) % 360; // giá trị từ 0 đến 359
+    const saturation = 60 + (Math.abs(hash) % 20); // 60-79%
+    const lightness = 50 + (Math.abs(hash) % 10); // 50-59%
+
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
+
         const content = (
             <>
+                {this.props.channel.type != Constants.DM_CHANNEL && (
+                    <div className = 'SidebarBaseChannelIconContainer' style={{backgroundColor: getColorFromId(channel.id)}}>
+                        <img
+                            className= 'SidebarBaseChannelIcon'
+                            src={chatGroupIcon}
+                            loading='lazy'
+                        />
+                    </div>
+                )}
                 <SidebarChannelIcon
                     isDeleted={channel.delete_at !== 0}
                     icon={icon}
@@ -260,7 +288,11 @@ export class SidebarChannelLink extends React.PureComponent<Props, State> {
                         channel={this.props.channel}
                     />
                     {sharedChannelIcon}
+                    <p className={`SidebarChannel_lastMessage ${isUnread ? 'unread' : ''}`}>$lastMessage-cadsfdhfkhekjwlrkenfudsiafyhejkhfds;jfvsdfoeufjdksjfksda;fewfsd</p>
                 </div>
+                <p className={`SidebarChannelLink_lastPost ${isUnread ? 'unread' : ''}`}>
+                    {new Date(this.props.channel.last_post_at).toLocaleString('vi-VN', {timeZone: 'Asia/Ho_Chi_Minh'})}
+                </p>
                 <ChannelPencilIcon id={channel.id}/>
                 <ChannelMentionBadge
                     unreadMentions={unreadMentions}

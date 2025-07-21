@@ -11,6 +11,7 @@
     background-size: cover;
 
     .sidebarHeaderTitleContainer {
+        margin-top: 15px;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -75,6 +76,7 @@
 
         .search__form {
             border-radius: 40px;
+            height: 34px;
         }
 
     }
